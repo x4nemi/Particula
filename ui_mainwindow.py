@@ -46,6 +46,12 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.destinoY_spinBox, 11, 2, 1, 1)
 
+        self.velocidad_spinBox = QSpinBox(self.groupBox_4)
+        self.velocidad_spinBox.setObjectName(u"velocidad_spinBox")
+        self.velocidad_spinBox.setMaximum(500)
+
+        self.gridLayout_4.addWidget(self.velocidad_spinBox, 13, 2, 1, 1)
+
         self.destinoX_spinBox = QSpinBox(self.groupBox_4)
         self.destinoX_spinBox.setObjectName(u"destinoX_spinBox")
         self.destinoX_spinBox.setMaximum(500)
@@ -73,12 +79,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.label_4, 11, 1, 1, 1)
 
-        self.velocidad_spinBox = QSpinBox(self.groupBox_4)
-        self.velocidad_spinBox.setObjectName(u"velocidad_spinBox")
-        self.velocidad_spinBox.setMaximum(500)
-
-        self.gridLayout_4.addWidget(self.velocidad_spinBox, 10, 2, 1, 1)
-
         self.label_3 = QLabel(self.groupBox_4)
         self.label_3.setObjectName(u"label_3")
 
@@ -92,7 +92,7 @@ class Ui_MainWindow(object):
         self.label_5 = QLabel(self.groupBox_4)
         self.label_5.setObjectName(u"label_5")
 
-        self.gridLayout_4.addWidget(self.label_5, 10, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.label_5, 13, 1, 1, 1)
 
 
         self.gridLayout_2.addWidget(self.groupBox_4, 3, 0, 4, 1)

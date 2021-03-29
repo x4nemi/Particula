@@ -1,8 +1,8 @@
 from PySide2.QtWidgets import QMainWindow
 from PySide2.QtCore import Slot
 from ui_mainwindow import Ui_MainWindow
-from particula_sa_5.particulacompuesta import ParticulaCompuesta
-from particula_sa_5.particula import Particula
+from particula_compuesta.particulacompuesta import ParticulaCompuesta
+from particula_compuesta.particula import Particula
 
 
 class MainWindow(QMainWindow):
