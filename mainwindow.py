@@ -49,4 +49,6 @@ class MainWindow(QMainWindow):
         self.particula_compuesta.agregar_inicio(particula)
     
     def mostrar(self):
-        self.particula_compuesta.mostrar()
+        # self.particula_compuesta.mostrar()
+        self.ui.salida.clear()
+        self.ui.salida.insertPlainText(str(self.particula_compuesta))
