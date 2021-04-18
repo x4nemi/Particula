@@ -1,4 +1,5 @@
 from .particula import Particula
+import json
 
 class ParticulaCompuesta:
     def __init__(self):
@@ -18,3 +19,21 @@ class ParticulaCompuesta:
         return "".join(
             str(p) for p in self.__particulas #programación funcional
         )
+    
+    def guardar(self, ubicacion):
+        try:
+            with open(ubicacion, "w") as archivo:
+                lista = [p.to_diccionario() for p in self.__particulas]
+                json.dump(lista, archivo, indent = 4)
+            return 1
+        except:
+            return 0
+    
+    def abrir(self, ubicacion):
+        try:
+            with open(ubicacion, "r") as archivo:
+                lista = json.load(archivo)
+                self.__particulas = [Particula(**p) for p in lista] # con los ** los convierte en parámetros del constructor
+            return 1
+        except:
+            return 0
