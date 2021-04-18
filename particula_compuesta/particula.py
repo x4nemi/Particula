@@ -30,14 +30,13 @@ class Particula:
     
     def to_diccionario(self):
         return{
-            "ID": self.__id,
-            "Origen en X": self.__origen_x,
-            "Origen en Y": self.__origen_y,
-            "Destino en X": self.__destino_x,
-            "Destino en Y": self.__destino_y,
-            "Velocidad": self.__velocidad,
-            "Red": self.__red,
-            "Green": self.__green,
-            "Blue": self.__blue,
-            "Distancia": self.__distancia
+            "id": self.__id,
+            "origen_x": self.__origen_x,
+            "origen_y": self.__origen_y,
+            "destino_x": self.__destino_x,
+            "destino_y": self.__destino_y,
+            "velocidad": self.__velocidad,
+            "red": self.__red,
+            "green": self.__green,
+            "blue": self.__blue
         }
