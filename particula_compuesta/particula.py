@@ -14,6 +14,46 @@ class Particula:
         self.__blue = blue
         self.__distancia = distancia_euclidiana(origen_x, origen_y, destino_x, destino_y)
     
+    @property
+    def id(self):
+        return self.__id
+    
+    @property
+    def origen_x(self):
+        return self.__origen_x
+    
+    @property
+    def origen_y(self):
+        return self.__origen_y
+    
+    @property
+    def destino_x(self):
+        return self.__destino_x
+    
+    @property
+    def destino_y(self):
+        return self.__destino_y
+    
+    @property
+    def velocidad(self):
+        return self.__velocidad
+    
+    @property
+    def red(self):
+        return self.__red
+    
+    @property
+    def green(self):
+        return self.__green
+    
+    @property
+    def blue(self):
+        return self.__blue
+    
+    @property
+    def distancia(self):
+        return self.__distancia
+
     def __str__(self):
         return(
             "ID: " + str(self.__id) + "\n" +

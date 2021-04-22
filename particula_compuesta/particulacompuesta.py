@@ -37,3 +37,18 @@ class ParticulaCompuesta:
             return 1
         except:
             return 0
+    
+    def __len__(self):
+        return len(self.__particulas)
+    
+    def __iter__(self): # para que sea iterable
+        self.cont = 0
+
+        return self # regresa el objeto
+    
+    def __next__(self): # es lo que llama la iteración (como una lista ligada)
+        if self.cont < len(self.__particulas):
+            p = self.__particulas[self.cont]
+            self.cont += 1
+            return p
+        raise StopIteration #excepción
