@@ -1,8 +1,10 @@
-from PySide2.QtWidgets import QMainWindow, QFileDialog, QMessageBox, QTableWidgetItem
+from PySide2.QtWidgets import QMainWindow, QFileDialog, QMessageBox, QTableWidgetItem, QGraphicsScene
 from PySide2.QtCore import Slot
+from PySide2.QtGui import QPen, QColor, QTransform
 from ui_mainwindow import Ui_MainWindow
 from particula_compuesta.particulacompuesta import ParticulaCompuesta
 from particula_compuesta.particula import Particula
+from random import randint
 
 
 class MainWindow(QMainWindow):
@@ -23,6 +25,12 @@ class MainWindow(QMainWindow):
 
         self.ui.mostrar_tabla_pushButton.clicked.connect(self.mostrar_tabla)
         self.ui.buscar_pushButton.clicked.connect(self.buscar_titulo)
+
+        self.ui.limpiar_pushB.clicked.connect(self.limpiar)
+        self.ui.dibujar_pushb.clicked.connect(self.dibujar)
+
+        self.scene = QGraphicsScene()
+        self.ui.graphicsView.setScene(self.scene)
 
     @Slot()
     def agregar_final(self):
@@ -180,3 +188,34 @@ class MainWindow(QMainWindow):
                 "Atención!",
                 f'La partícula con ID "{p_id}" no fue encontrado'
             )
+
+    def wheelEvent(self, event):
+        if event.delta() > 0:
+            self.ui.graphicsView.scale(1.2, 1.2)
+        else:
+            self.ui.graphicsView.scale(0.8, 0.8)
+
+    @Slot()
+    def dibujar(self):
+        pen = QPen()
+        pen.setWidth(2)
+
+        for p in self.particula_compuesta:
+            r = p.red
+            g = p.green
+            b = p.blue
+            color = QColor(r, g, b)
+            pen.setColor(color)
+
+            origen_x = p.origen_x
+            origen_y = p.origen_y
+            destino_x = p.destino_x
+            destino_y = p.destino_y
+
+            self.scene.addEllipse(origen_x, origen_y, 3, 3, pen)
+            self.scene.addEllipse(destino_x, destino_y, 3, 3, pen)
+            self.scene.addLine(origen_x+3, origen_y+3, destino_x, destino_y, pen)
+
+    @Slot()
+    def limpiar(self):
+        self.scene.clear()
