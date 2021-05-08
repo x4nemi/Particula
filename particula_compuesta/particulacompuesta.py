@@ -52,3 +52,12 @@ class ParticulaCompuesta:
             self.cont += 1
             return p
         raise StopIteration #excepción
+    
+    def ordenar_por_id(self):
+        self.__particulas.sort(key = lambda p: p.id)
+    
+    def ordenar_por_distancia(self):
+        self.__particulas.sort(key= lambda p: p.distancia, reverse=True)
+    
+    def ordenar_por_velocidad(self):
+        self.__particulas.sort(key=lambda p: p.velocidad)

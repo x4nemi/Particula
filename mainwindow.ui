@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>799</width>
-    <height>523</height>
+    <height>502</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,30 +18,23 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="Graficar">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
         <string>Agregar</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="1">
+         <widget class="QPlainTextEdit" name="salida"/>
+        </item>
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBox_2">
           <property name="title">
            <string>Actividad 6</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="5" column="2">
-            <widget class="QPushButton" name="agregarInicio_pushB">
-             <property name="text">
-              <string>Agregar al inicio</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QSpinBox" name="id_spinBox"/>
-           </item>
-           <item row="3" column="0" rowspan="4">
+           <item row="1" column="0" rowspan="4">
             <widget class="QGroupBox" name="groupBox_4">
              <property name="title">
               <string>Distancia</string>
@@ -116,14 +109,47 @@
              </layout>
             </widget>
            </item>
-           <item row="6" column="2">
-            <widget class="QPushButton" name="mostrar_pushB">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_6">
              <property name="text">
-              <string>Mostrar</string>
+              <string>id:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
-           <item row="3" column="2">
+           <item row="5" column="0" colspan="3">
+            <widget class="QGroupBox" name="groupBox">
+             <property name="title">
+              <string>Ordenar</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="0" column="0">
+               <widget class="QPushButton" name="sortId">
+                <property name="text">
+                 <string>Por Id</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QPushButton" name="sortDis">
+                <property name="text">
+                 <string>Por Distancia</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="sortVel">
+                <property name="text">
+                 <string>Por Velocidad</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
             <widget class="QGroupBox" name="color">
              <property name="title">
               <string>Color</string>
@@ -174,28 +200,32 @@
              </layout>
             </widget>
            </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_6">
-             <property name="text">
-              <string>id:</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="2">
+           <item row="2" column="1" colspan="2">
             <widget class="QPushButton" name="agregarFinal_pushB">
              <property name="text">
               <string>Agregar al final</string>
              </property>
             </widget>
            </item>
+           <item row="3" column="1" colspan="2">
+            <widget class="QPushButton" name="agregarInicio_pushB">
+             <property name="text">
+              <string>Agregar al inicio</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" colspan="2">
+            <widget class="QPushButton" name="mostrar_pushB">
+             <property name="text">
+              <string>Mostrar</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="QSpinBox" name="id_spinBox"/>
+           </item>
           </layout>
          </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QPlainTextEdit" name="salida"/>
         </item>
        </layout>
       </widget>
@@ -214,21 +244,14 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QPushButton" name="buscar_pushButton">
+        <item row="1" column="3">
+         <widget class="QPushButton" name="orden_id_pb">
           <property name="text">
-           <string>Buscar</string>
+           <string>Ordenar Id</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="mostrar_tabla_pushButton">
-          <property name="text">
-           <string>Mostrar</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" colspan="3">
+        <item row="0" column="0" colspan="7">
          <widget class="QTableWidget" name="tabla">
           <attribute name="horizontalHeaderMinimumSectionSize">
            <number>47</number>
@@ -242,6 +265,34 @@
           <attribute name="verticalHeaderDefaultSectionSize">
            <number>39</number>
           </attribute>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="mostrar_tabla_pushButton">
+          <property name="text">
+           <string>Mostrar</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="5">
+         <widget class="QPushButton" name="ordenar_vel_pb">
+          <property name="text">
+           <string>Ordenar Velocidad</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="buscar_pushButton">
+          <property name="text">
+           <string>Buscar</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QPushButton" name="ordenar_d_pb">
+          <property name="text">
+           <string>Ordenar Distancia</string>
+          </property>
          </widget>
         </item>
        </layout>

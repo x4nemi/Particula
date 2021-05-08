@@ -32,6 +32,16 @@ class MainWindow(QMainWindow):
         self.scene = QGraphicsScene()
         self.ui.graphicsView.setScene(self.scene)
 
+        #Table Widget
+        self.ui.orden_id_pb.clicked.connect(self.ordenar_id)
+        self.ui.ordenar_d_pb.clicked.connect(self.ordenar_dis)
+        self.ui.ordenar_vel_pb.clicked.connect(self.ordenar_vel)
+
+        #Plain Text Widget
+        self.ui.sortId.clicked.connect(self.sort_id)
+        self.ui.sortDis.clicked.connect(self.sort_dis)
+        self.ui.sortVel.clicked.connect(self.sort_vel)
+
     @Slot()
     def agregar_final(self):
         identificador = self.ui.id_spinBox.value()
@@ -219,3 +229,33 @@ class MainWindow(QMainWindow):
     @Slot()
     def limpiar(self):
         self.scene.clear()
+
+    @Slot()
+    def ordenar_id(self):
+        self.particula_compuesta.ordenar_por_id()
+        self.mostrar_tabla()
+    
+    @Slot()
+    def ordenar_dis(self):
+        self.particula_compuesta.ordenar_por_distancia()
+        self.mostrar_tabla()
+    
+    @Slot()
+    def ordenar_vel(self):
+        self.particula_compuesta.ordenar_por_velocidad()
+        self.mostrar_tabla()
+
+    @Slot()
+    def sort_id(self):
+        self.particula_compuesta.ordenar_por_id()
+        self.mostrar()
+    
+    @Slot()
+    def sort_dis(self):
+        self.particula_compuesta.ordenar_por_distancia()
+        self.mostrar()
+    
+    @Slot()
+    def sort_vel(self):
+        self.particula_compuesta.ordenar_por_velocidad()
+        self.mostrar()
