@@ -91,6 +91,7 @@ class Ui_MainWindow(object):
 
         self.origenX_spinBox = QSpinBox(self.groupBox_4)
         self.origenX_spinBox.setObjectName(u"origenX_spinBox")
+        self.origenX_spinBox.setMaximum(500)
 
         self.gridLayout_4.addWidget(self.origenX_spinBox, 1, 2, 1, 1)
 

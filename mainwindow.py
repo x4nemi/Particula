@@ -225,6 +225,8 @@ class MainWindow(QMainWindow):
             self.scene.addEllipse(origen_x, origen_y, 3, 3, pen)
             self.scene.addEllipse(destino_x, destino_y, 3, 3, pen)
             self.scene.addLine(origen_x+3, origen_y+3, destino_x, destino_y, pen)
+        
+        self.particula_compuesta.to_dictionary()
 
     @Slot()
     def limpiar(self):
