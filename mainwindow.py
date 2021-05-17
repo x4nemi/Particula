@@ -22,6 +22,7 @@ class MainWindow(QMainWindow):
 
         self.ui.actionAbrir.triggered.connect(self.action_abrir_archivo) # disparo
         self.ui.actionGuardar.triggered.connect(self.action_guardar_archivo)
+        self.ui.actionMostrar_Grafo.triggered.connect(self.action_mostrar_grafo)
 
         self.ui.mostrar_tabla_pushButton.clicked.connect(self.mostrar_tabla)
         self.ui.buscar_pushButton.clicked.connect(self.buscar_titulo)
@@ -225,8 +226,6 @@ class MainWindow(QMainWindow):
             self.scene.addEllipse(origen_x, origen_y, 3, 3, pen)
             self.scene.addEllipse(destino_x, destino_y, 3, 3, pen)
             self.scene.addLine(origen_x+3, origen_y+3, destino_x, destino_y, pen)
-        
-        self.particula_compuesta.to_dictionary()
 
     @Slot()
     def limpiar(self):
@@ -261,3 +260,8 @@ class MainWindow(QMainWindow):
     def sort_vel(self):
         self.particula_compuesta.ordenar_por_velocidad()
         self.mostrar()
+    
+    @Slot()
+    def action_mostrar_grafo(self):
+        self.ui.salida.clear()
+        self.ui.salida.insertPlainText(self.particula_compuesta.to_dictionary())

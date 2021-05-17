@@ -344,6 +344,7 @@
     </property>
     <addaction name="actionAbrir"/>
     <addaction name="actionGuardar"/>
+    <addaction name="actionMostrar_Grafo"/>
    </widget>
    <addaction name="menuArchivo"/>
   </widget>
@@ -362,6 +363,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionMostrar_Grafo">
+   <property name="text">
+    <string>Mostrar Grafo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
    </property>
   </action>
  </widget>

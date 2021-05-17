@@ -86,5 +86,6 @@ class ParticulaCompuesta:
             else:
                 self.__grafo[destino] = [arista_d_o_x]
             
-        pprint(self.__grafo, indent=4)
+        string = pformat(self.__grafo, indent=4, width=40)
+        return string
 
