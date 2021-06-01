@@ -5,7 +5,7 @@ from ui_mainwindow import Ui_MainWindow
 from particula_compuesta.particulacompuesta import ParticulaCompuesta
 from particula_compuesta.particula import Particula
 from random import randint
-
+from particula_compuesta.algoritmos import amplitud, profundidad
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -42,6 +42,9 @@ class MainWindow(QMainWindow):
         self.ui.sortId.clicked.connect(self.sort_id)
         self.ui.sortDis.clicked.connect(self.sort_dis)
         self.ui.sortVel.clicked.connect(self.sort_vel)
+
+        #Profundidad y anchura
+        self.ui.anchura_profundidad.triggered.connect(self.ampl_prof)
 
     @Slot()
     def agregar_final(self):
@@ -265,3 +268,28 @@ class MainWindow(QMainWindow):
     def action_mostrar_grafo(self):
         self.ui.salida.clear()
         self.ui.salida.insertPlainText(self.particula_compuesta.to_dictionary())
+
+    @Slot()
+    def ampl_prof(self):
+        origen_x = self.ui.origenX_spinBox.value() #Sacamos lo que está ahí
+        origen_y = self.ui.origenY_spinBox.value()
+        origen = (origen_x, origen_y) 
+        grafo = self.particula_compuesta.toGrafo()
+        string = "\nAmplitud\n"
+
+        if origen in grafo:
+            self.ui.salida.clear()
+            recorridoAmplitud = amplitud(origen, grafo)
+            string += '\n'.join([str(nodo) for nodo in recorridoAmplitud])
+            string += "\n\nProfundidad\n"
+            recorridoProfundidad = profundidad(origen, grafo)
+            string += '\n'.join([str(nodo) for nodo in recorridoProfundidad])
+            self.ui.salida.insertPlainText("\n" + string)
+            
+        else:
+            QMessageBox.critical(
+                self,
+                "Error",
+                "No es posible leer los datos"
+            )
+    

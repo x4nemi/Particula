@@ -346,7 +346,14 @@
     <addaction name="actionGuardar"/>
     <addaction name="actionMostrar_Grafo"/>
    </widget>
+   <widget class="QMenu" name="menuAlgoritmos">
+    <property name="title">
+     <string>Algoritmos</string>
+    </property>
+    <addaction name="anchura_profundidad"/>
+   </widget>
    <addaction name="menuArchivo"/>
+   <addaction name="menuAlgoritmos"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionAbrir">
@@ -371,6 +378,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="anchura_profundidad">
+   <property name="text">
+    <string>Recorrido en Anchura/Profundidad</string>
    </property>
   </action>
  </widget>

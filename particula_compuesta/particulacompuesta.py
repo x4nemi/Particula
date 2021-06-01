@@ -1,11 +1,13 @@
 from .particula import Particula
 import json
 from pprint import pprint, pformat
+from .algoritmos import amplitud, profundidad
 
 class ParticulaCompuesta:
     def __init__(self):
         self.__particulas = []
         self.__grafo = dict()
+        grafo = dict()
     
     def agregar_final(self, particula:Particula):
         self.__particulas.append(particula)
@@ -82,10 +84,45 @@ class ParticulaCompuesta:
             else:
                 self.__grafo[origen] = [arista_o_d_x]
             if destino in self.__grafo:
-                self.__grafo[destino].append[arista_d_o_x]
+                self.__grafo[destino].append(arista_d_o_x)
             else:
                 self.__grafo[destino] = [arista_d_o_x]
             
         string = pformat(self.__grafo, indent=4, width=40)
         return string
+    
+    def toGrafo(self):
+        grafo = dict()
+        for p in self.__particulas:
+            origen_x = p.origen_x
+            origen_y = p.origen_y
+            origen = (origen_x, origen_y)
+            destino_x = p.destino_x
+            destino_y = p.destino_y
+            destino = (destino_x, destino_y)
 
+            arista_o_d_x = (destino, p.distancia)
+            arista_d_o_x = (origen, p.distancia)
+
+            if origen in grafo:
+                grafo[origen].append(arista_o_d_x)
+            else:
+                grafo[origen] = [arista_o_d_x]
+            if destino in grafo:
+                grafo[destino].append(arista_d_o_x)
+            else:
+                grafo[destino] = [arista_d_o_x]
+        
+        return grafo
+            
+
+    def isOrigenInPC(self, origen_x, origen_y):
+        ox = []
+        oy = []
+        for p in self.__particulas:
+            ox.append(p.origen_x)
+            oy.append(p.origen_y)
+        
+        if origen_x in ox and origen_y in oy:
+            return True
+        return False     
