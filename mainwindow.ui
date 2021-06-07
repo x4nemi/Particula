@@ -351,6 +351,7 @@
      <string>Algoritmos</string>
     </property>
     <addaction name="anchura_profundidad"/>
+    <addaction name="actionAlgoritmo_de_Prim"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuAlgoritmos"/>
@@ -383,6 +384,11 @@
   <action name="anchura_profundidad">
    <property name="text">
     <string>Recorrido en Anchura/Profundidad</string>
+   </property>
+  </action>
+  <action name="actionAlgoritmo_de_Prim">
+   <property name="text">
+    <string>Algoritmo de Prim</string>
    </property>
   </action>
  </widget>

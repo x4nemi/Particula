@@ -5,7 +5,8 @@ from ui_mainwindow import Ui_MainWindow
 from particula_compuesta.particulacompuesta import ParticulaCompuesta
 from particula_compuesta.particula import Particula
 from random import randint
-from particula_compuesta.algoritmos import amplitud, profundidad
+from particula_compuesta.algoritmos import amplitud, profundidad, algoritmoPrim
+from pprint import pformat
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -45,6 +46,9 @@ class MainWindow(QMainWindow):
 
         #Profundidad y anchura
         self.ui.anchura_profundidad.triggered.connect(self.ampl_prof)
+
+        #Prim
+        self.ui.actionAlgoritmo_de_Prim.triggered.connect(self.prim)
 
     @Slot()
     def agregar_final(self):
@@ -228,7 +232,7 @@ class MainWindow(QMainWindow):
 
             self.scene.addEllipse(origen_x, origen_y, 3, 3, pen)
             self.scene.addEllipse(destino_x, destino_y, 3, 3, pen)
-            self.scene.addLine(origen_x+3, origen_y+3, destino_x, destino_y, pen)
+            self.scene.addLine(origen_x, origen_y, destino_x, destino_y, pen)
 
     @Slot()
     def limpiar(self):
@@ -293,3 +297,39 @@ class MainWindow(QMainWindow):
                 "No es posible leer los datos"
             )
     
+    @Slot()
+    def prim(self):
+        origen_x = self.ui.origenX_spinBox.value() #Sacamos lo que está ahí
+        origen_y = self.ui.origenY_spinBox.value()
+        origen = (origen_x, origen_y) 
+        grafo = self.particula_compuesta.toGrafo1()
+        
+        if origen in grafo:
+            grafoPrim = algoritmoPrim(grafo, origen)
+            string = pformat(grafoPrim, indent=4, width=40)
+            print(string)          
+
+            for v in grafoPrim: #tupla keys
+                 
+                ady = grafoPrim.get(v)
+
+                for nodo in ady: #(peso, (origen, destino)) valores
+                    pen = QPen()
+                    pen.setWidth(2)  
+                    color = QColor(255, 51, 205)
+                    pen.setColor(color) 
+                    origen_x = v[0]
+                    origen_y = v[1]
+                    destino_x = nodo[1][0]
+                    destino_y = nodo[1][1]
+
+                    self.scene.addEllipse(origen_x, origen_y, 3, 3, pen)
+                    self.scene.addEllipse(destino_x, destino_y, 3, 3, pen)
+                    self.scene.addLine(origen_x, origen_y, destino_x, destino_y, pen)
+            
+        else:
+            QMessageBox.critical(
+                self,
+                "Error",
+                "No es posible leer los datos"
+            )

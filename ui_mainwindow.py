@@ -26,6 +26,8 @@ class Ui_MainWindow(object):
         self.actionMostrar_Grafo.setObjectName(u"actionMostrar_Grafo")
         self.anchura_profundidad = QAction(MainWindow)
         self.anchura_profundidad.setObjectName(u"anchura_profundidad")
+        self.actionAlgoritmo_de_Prim = QAction(MainWindow)
+        self.actionAlgoritmo_de_Prim.setObjectName(u"actionAlgoritmo_de_Prim")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_6 = QGridLayout(self.centralwidget)
@@ -286,6 +288,7 @@ class Ui_MainWindow(object):
         self.menuArchivo.addAction(self.actionGuardar)
         self.menuArchivo.addAction(self.actionMostrar_Grafo)
         self.menuAlgoritmos.addAction(self.anchura_profundidad)
+        self.menuAlgoritmos.addAction(self.actionAlgoritmo_de_Prim)
 
         self.retranslateUi(MainWindow)
 
@@ -310,6 +313,7 @@ class Ui_MainWindow(object):
         self.actionMostrar_Grafo.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+G", None))
 #endif // QT_CONFIG(shortcut)
         self.anchura_profundidad.setText(QCoreApplication.translate("MainWindow", u"Recorrido en Anchura/Profundidad", None))
+        self.actionAlgoritmo_de_Prim.setText(QCoreApplication.translate("MainWindow", u"Algoritmo de Prim", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Actividad 6", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Distancia", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Origen en y:", None))
