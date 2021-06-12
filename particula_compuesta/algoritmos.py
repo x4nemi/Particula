@@ -82,15 +82,12 @@ def algoritmoPrim(grafo, origen):
     visitados = [] #lista de (1, 2)
     colaPrioridad = PriorityQueue()
     grafoRes = dict()
-    #colaVisitados = PriorityQueue() ######
 
-    #colaPrioridad.put(origen)
     adyacentes = grafo.get(origen)
     for nodo in adyacentes:
         destino = nodo[1]
         arista = (nodo[0], (origen, destino))
         colaPrioridad.put(arista) #(peso, (o_x, o_y), (d_x, d_y))
-        print(nodo)
 
     #colaPrioridad.put(grafo.get(origen))
     visitados.append(origen)
@@ -104,10 +101,7 @@ def algoritmoPrim(grafo, origen):
         if destino not in visitados: 
             visitados.append(destino)
             adyacentes = grafo.get(destino)
-            # for i in len(adyacentes):
-            #     destino2 = adyacentes[i][1]
             for nodo in adyacentes: #iterando a los adyacentes
-                print("nodo", nodo)
                 destino2 = nodo[1] #se vuelve el destino 
                 arista = (nodo[0], (destino, destino2)) #el destino anterior se vuelve el origen
                 # print("v", visitados)
@@ -131,8 +125,111 @@ def algoritmoPrim(grafo, origen):
                 grafoRes[destino1].append(arista_d_o)
             else:
                 grafoRes[destino1] = [arista_d_o]
-            print("g", grafoRes)
-    print(grafoRes)
+
     return grafoRes
 
+def makeSet(origen, destino, disjointSet):
+    l = []
 
+    for lista in reversed(disjointSet):
+        if destino in lista:
+            l = lista
+    for lista in disjointSet:
+        if origen in lista:
+            if l != []:
+                l1 = lista + l
+                #print("1", l1)
+                r = []
+                lista.clear()
+                for e in l1:
+                    if e not in r:
+                        lista.append(e)
+                        r.append(e)
+                
+                
+                if l in disjointSet:
+                    disjointSet.remove(l)
+
+                # if [origen] in disjointSet:
+                #     disjointSet.remove([origen])
+                #     i -= 1
+            
+
+        if [destino] == lista:
+            disjointSet.remove([destino])
+
+
+
+
+    # i = 0
+    # for lista in disjointSet:
+    #     if [destino] == lista:
+    #         disjointSet.remove([destino])
+    #     # if destino in lista:
+    #     #     lista.remove(destino)
+    #     if origen in lista:
+    #         j = i
+    #         for j in range(len(disjointSet)):
+    #             lista2 = disjointSet[j]
+    #             if destino in lista2:
+    #                 l1 = disjointSet[i] + lista2
+    #                 disjointSet[i] = l1
+    #             if [destino] == lista2:
+    #                 disjointSet.remove([destino])
+    #     i += 1
+        
+        
+def findSet(vertice, disjointSet):
+    for i in range(len(disjointSet)):
+        if vertice in disjointSet[i]:
+            return disjointSet[i]
+    return []
+
+def algoritmoKruskal(grafo):
+    grafoRes = dict()
+    listaOrdenada = PriorityQueue()
+    disjointSet = []
+
+    visitados = []
+
+    for origen in grafo: #(x, y) origen -- keys
+        ady = grafo.get(origen)
+        disjointSet.append([origen])
+
+        for nodo in ady: #(peso, (destino)) -- values
+            destino = nodo[1]
+            arista = (nodo[0] * -1, (origen, destino))
+            
+            if (origen, destino) not in visitados and (destino, origen) not in visitados:
+                print(arista)
+                listaOrdenada.put(arista)
+                visitados.append((origen, destino))
+    
+    while not listaOrdenada.empty():
+        arista = listaOrdenada.get()
+        origen = arista[1][0]
+        destino = arista[1][1]
+        print("a", arista)
+
+        if findSet(origen, disjointSet) != findSet(destino, disjointSet):
+            
+            peso = arista[0]
+
+            arista_o_d = (peso, destino)
+            arista_d_o = (peso, origen)
+
+            if origen in grafoRes:
+                grafoRes[origen].append(arista_o_d)
+            else:
+                grafoRes[origen] = [arista_o_d]
+            
+            if destino in grafoRes:
+                grafoRes[destino].append(arista_d_o)
+            else:
+                grafoRes[destino] = [arista_d_o]
+
+            makeSet(origen, destino, disjointSet)
+
+ 
+    
+    return grafoRes

@@ -5,7 +5,7 @@ from ui_mainwindow import Ui_MainWindow
 from particula_compuesta.particulacompuesta import ParticulaCompuesta
 from particula_compuesta.particula import Particula
 from random import randint
-from particula_compuesta.algoritmos import amplitud, profundidad, algoritmoPrim
+from particula_compuesta.algoritmos import amplitud, profundidad, algoritmoPrim, algoritmoKruskal
 from pprint import pformat
 
 class MainWindow(QMainWindow):
@@ -49,6 +49,9 @@ class MainWindow(QMainWindow):
 
         #Prim
         self.ui.actionAlgoritmo_de_Prim.triggered.connect(self.prim)
+
+        #Kruskal
+        self.ui.actionAlgoritmo_de_Kruskal.triggered.connect(self.kruskal)
 
     @Slot()
     def agregar_final(self):
@@ -307,6 +310,7 @@ class MainWindow(QMainWindow):
         if origen in grafo:
             grafoPrim = algoritmoPrim(grafo, origen)
             string = pformat(grafoPrim, indent=4, width=40)
+            print("Origen: ", origen)
             print(string)          
 
             for v in grafoPrim: #tupla keys
@@ -333,3 +337,28 @@ class MainWindow(QMainWindow):
                 "Error",
                 "No es posible leer los datos"
             )
+
+    @Slot()
+    def kruskal(self):
+        grafo = self.particula_compuesta.toGrafo2()
+        grafoK = algoritmoKruskal(grafo)
+        string = pformat(grafoK, indent = 4, width = 40)
+        print(string)
+
+        for v in grafoK: #tupla keys
+                 
+            ady = grafoK.get(v)
+
+            for nodo in ady: #(peso, (origen, destino)) valores
+                pen = QPen()
+                pen.setWidth(2)  
+                color = QColor(255, 51, 205)
+                pen.setColor(color) 
+                origen_x = v[0]
+                origen_y = v[1]
+                destino_x = nodo[1][0]
+                destino_y = nodo[1][1]
+
+                self.scene.addEllipse(origen_x, origen_y, 3, 3, pen)
+                self.scene.addEllipse(destino_x, destino_y, 3, 3, pen)
+                self.scene.addLine(origen_x, origen_y, destino_x, destino_y, pen)

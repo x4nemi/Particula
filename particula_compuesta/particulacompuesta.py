@@ -137,7 +137,30 @@ class ParticulaCompuesta:
             else:
                 grafo[destino] = [arista_d_o_x]
         
-        print()
+        return grafo
+
+    def toGrafo2(self):
+        grafo = dict()
+        for p in self.__particulas:
+            origen_x = p.origen_x
+            origen_y = p.origen_y
+            origen = (origen_x, origen_y)
+            destino_x = p.destino_x
+            destino_y = p.destino_y
+            destino = (destino_x, destino_y)
+
+            arista_o_d_x = (p.velocidad, destino)
+            arista_d_o_x = (p.velocidad, origen)
+
+            if origen in grafo:
+                grafo[origen].append(arista_o_d_x)
+            else:
+                grafo[origen] = [arista_o_d_x]
+            if destino in grafo:
+                grafo[destino].append(arista_d_o_x)
+            else:
+                grafo[destino] = [arista_d_o_x]
+        
         return grafo
 
     def isOrigenInPC(self, origen_x, origen_y):
