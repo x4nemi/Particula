@@ -233,8 +233,8 @@ class MainWindow(QMainWindow):
             destino_x = p.destino_x
             destino_y = p.destino_y
 
-            self.scene.addEllipse(origen_x, origen_y, 3, 3, pen)
-            self.scene.addEllipse(destino_x, destino_y, 3, 3, pen)
+            self.scene.addEllipse(origen_x, origen_y, 2, 2, pen)
+            self.scene.addEllipse(destino_x, destino_y, 2, 2, pen)
             self.scene.addLine(origen_x, origen_y, destino_x, destino_y, pen)
 
     @Slot()
@@ -359,6 +359,6 @@ class MainWindow(QMainWindow):
                 destino_x = nodo[1][0]
                 destino_y = nodo[1][1]
 
-                self.scene.addEllipse(origen_x, origen_y, 3, 3, pen)
-                self.scene.addEllipse(destino_x, destino_y, 3, 3, pen)
+                #self.scene.addEllipse(origen_x, origen_y, 3, 3, pen)
+                #self.scene.addEllipse(destino_x, destino_y, 3, 3, pen)
                 self.scene.addLine(origen_x, origen_y, destino_x, destino_y, pen)

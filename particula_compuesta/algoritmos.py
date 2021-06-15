@@ -136,47 +136,22 @@ def makeSet(origen, destino, disjointSet):
             l = lista
     for lista in disjointSet:
         if origen in lista:
-            if l != []:
-                l1 = lista + l
-                #print("1", l1)
-                r = []
-                lista.clear()
-                for e in l1:
-                    if e not in r:
-                        lista.append(e)
-                        r.append(e)
-                
-                
-                if l in disjointSet:
-                    disjointSet.remove(l)
-
-                # if [origen] in disjointSet:
-                #     disjointSet.remove([origen])
-                #     i -= 1
+            l1 = lista + l
+            #print("1", l1)
+            r = []
+            lista.clear()
+            for e in l1:
+                if e not in r:
+                    lista.append(e)
+                    r.append(e)
+            
+            
+            if l in disjointSet:
+                disjointSet.remove(l)
             
 
         if [destino] == lista:
             disjointSet.remove([destino])
-
-
-
-
-    # i = 0
-    # for lista in disjointSet:
-    #     if [destino] == lista:
-    #         disjointSet.remove([destino])
-    #     # if destino in lista:
-    #     #     lista.remove(destino)
-    #     if origen in lista:
-    #         j = i
-    #         for j in range(len(disjointSet)):
-    #             lista2 = disjointSet[j]
-    #             if destino in lista2:
-    #                 l1 = disjointSet[i] + lista2
-    #                 disjointSet[i] = l1
-    #             if [destino] == lista2:
-    #                 disjointSet.remove([destino])
-    #     i += 1
         
         
 def findSet(vertice, disjointSet):
@@ -201,7 +176,6 @@ def algoritmoKruskal(grafo):
             arista = (nodo[0] * -1, (origen, destino))
             
             if (origen, destino) not in visitados and (destino, origen) not in visitados:
-                print(arista)
                 listaOrdenada.put(arista)
                 visitados.append((origen, destino))
     
@@ -209,7 +183,8 @@ def algoritmoKruskal(grafo):
         arista = listaOrdenada.get()
         origen = arista[1][0]
         destino = arista[1][1]
-        print("a", arista)
+        print("arista: ", arista)
+        print(disjointSet)
 
         if findSet(origen, disjointSet) != findSet(destino, disjointSet):
             
