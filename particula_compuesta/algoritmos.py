@@ -244,6 +244,8 @@ def algoritmoDijkstra(grafo, origen):
                 camino[destino] = nodo[1]
                 listaOrdenada.put((dist, destino))
                 
+    s = pformat(distancias, indent = 4, width = 40)
+    print(s)
     return camino
 
             

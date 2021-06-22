@@ -370,9 +370,8 @@ class MainWindow(QMainWindow):
     def dijkstra(self):
         grafo = self.particula_compuesta.toGrafo1()
         print("dij")
-        #algoritmoDijkstra(grafo, (310, 339), (420, 464))
-        origen = (310, 339)
-        destino = (420, 464)
+        # origen = (310, 339)
+        # destino = (420, 464)
 
         origen_x = self.ui.origenX_spinBox.value() #Sacamos lo que está ahí
         origen_y = self.ui.origenY_spinBox.value()
@@ -391,7 +390,6 @@ class MainWindow(QMainWindow):
             color = QColor(255, 51, 205)
             pen.setColor(color)
 
-            #auxOri = destino
             auxDest = destino
 
             while origen != destino:
@@ -401,29 +399,15 @@ class MainWindow(QMainWindow):
 
                 self.scene.addEllipse(d_x, d_y, 3, 3, pen)
 
-                print(camino[auxDest])
+                #print(camino[auxDest])
 
                 destino = camino[auxDest] 
-                print(destino, auxDest)
+                #print(destino, auxDest)
                 o_x = destino[0]
                 o_y = destino[1]
 
                 self.scene.addEllipse(o_x, o_y, 3, 3, pen)
                 self.scene.addLine(o_x, o_y, d_x, d_y, pen)
-
-
-            # for o in camino:
-            #     o_x = o[0]
-            #     o_y = o[1]
-
-            #     d = camino.get(o)
-
-            #     d_x = d[0]
-            #     d_y = d[1]
-
-            #     self.scene.addEllipse(o_x, o_y, 3, 3, pen)
-            #     self.scene.addEllipse(d_x, d_y, 3, 3, pen)
-            #     self.scene.addLine(o_x, o_y, d_x, d_y, pen)
             
             s = pformat(camino, indent = 4, width = 40)
             print(s)
