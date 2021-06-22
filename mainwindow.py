@@ -5,7 +5,7 @@ from ui_mainwindow import Ui_MainWindow
 from particula_compuesta.particulacompuesta import ParticulaCompuesta
 from particula_compuesta.particula import Particula
 from random import randint
-from particula_compuesta.algoritmos import amplitud, profundidad, algoritmoPrim, algoritmoKruskal
+from particula_compuesta.algoritmos import amplitud, profundidad, algoritmoPrim, algoritmoKruskal, algoritmoDijkstra
 from pprint import pformat
 
 class MainWindow(QMainWindow):
@@ -52,6 +52,9 @@ class MainWindow(QMainWindow):
 
         #Kruskal
         self.ui.actionAlgoritmo_de_Kruskal.triggered.connect(self.kruskal)
+
+        #Dijkstra
+        self.ui.actionAlgoritmo_de_Dijkstra.triggered.connect(self.dijkstra)
 
     @Slot()
     def agregar_final(self):
@@ -362,3 +365,72 @@ class MainWindow(QMainWindow):
                 #self.scene.addEllipse(origen_x, origen_y, 3, 3, pen)
                 #self.scene.addEllipse(destino_x, destino_y, 3, 3, pen)
                 self.scene.addLine(origen_x, origen_y, destino_x, destino_y, pen)
+
+    @Slot()
+    def dijkstra(self):
+        grafo = self.particula_compuesta.toGrafo1()
+        print("dij")
+        #algoritmoDijkstra(grafo, (310, 339), (420, 464))
+        origen = (310, 339)
+        destino = (420, 464)
+
+        origen_x = self.ui.origenX_spinBox.value() #Sacamos lo que está ahí
+        origen_y = self.ui.origenY_spinBox.value()
+        origen = (origen_x, origen_y)
+        destino_x = self.ui.destinoX_spinBox.value()
+        destino_y = self.ui.destinoY_spinBox.value() 
+        destino = (destino_x, destino_y)
+        print(origen, destino)
+        
+        if origen and destino in grafo:
+            o = origen
+            d = destino
+            camino = algoritmoDijkstra(grafo, o)
+            pen = QPen()
+            pen.setWidth(2)  
+            color = QColor(255, 51, 205)
+            pen.setColor(color)
+
+            #auxOri = destino
+            auxDest = destino
+
+            while origen != destino:
+                auxDest = destino
+                d_x = auxDest[0]
+                d_y = auxDest[1]
+
+                self.scene.addEllipse(d_x, d_y, 3, 3, pen)
+
+                print(camino[auxDest])
+
+                destino = camino[auxDest] 
+                print(destino, auxDest)
+                o_x = destino[0]
+                o_y = destino[1]
+
+                self.scene.addEllipse(o_x, o_y, 3, 3, pen)
+                self.scene.addLine(o_x, o_y, d_x, d_y, pen)
+
+
+            # for o in camino:
+            #     o_x = o[0]
+            #     o_y = o[1]
+
+            #     d = camino.get(o)
+
+            #     d_x = d[0]
+            #     d_y = d[1]
+
+            #     self.scene.addEllipse(o_x, o_y, 3, 3, pen)
+            #     self.scene.addEllipse(d_x, d_y, 3, 3, pen)
+            #     self.scene.addLine(o_x, o_y, d_x, d_y, pen)
+            
+            s = pformat(camino, indent = 4, width = 40)
+            print(s)
+
+        else:
+            QMessageBox.critical(
+                self,
+                "Error",
+                "No es posible leer los datos"
+            )

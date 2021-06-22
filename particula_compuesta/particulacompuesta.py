@@ -163,13 +163,4 @@ class ParticulaCompuesta:
         
         return grafo
 
-    def isOrigenInPC(self, origen_x, origen_y):
-        ox = []
-        oy = []
-        for p in self.__particulas:
-            ox.append(p.origen_x)
-            oy.append(p.origen_y)
-        
-        if origen_x in ox and origen_y in oy:
-            return True
-        return False     
+    

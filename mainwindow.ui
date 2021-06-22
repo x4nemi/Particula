@@ -353,6 +353,7 @@
     <addaction name="anchura_profundidad"/>
     <addaction name="actionAlgoritmo_de_Prim"/>
     <addaction name="actionAlgoritmo_de_Kruskal"/>
+    <addaction name="actionAlgoritmo_de_Dijkstra"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuAlgoritmos"/>
@@ -395,6 +396,11 @@
   <action name="actionAlgoritmo_de_Kruskal">
    <property name="text">
     <string>Algoritmo de Kruskal</string>
+   </property>
+  </action>
+  <action name="actionAlgoritmo_de_Dijkstra">
+   <property name="text">
+    <string>Algoritmo de Dijkstra</string>
    </property>
   </action>
  </widget>

@@ -30,6 +30,8 @@ class Ui_MainWindow(object):
         self.actionAlgoritmo_de_Prim.setObjectName(u"actionAlgoritmo_de_Prim")
         self.actionAlgoritmo_de_Kruskal = QAction(MainWindow)
         self.actionAlgoritmo_de_Kruskal.setObjectName(u"actionAlgoritmo_de_Kruskal")
+        self.actionAlgoritmo_de_Dijkstra = QAction(MainWindow)
+        self.actionAlgoritmo_de_Dijkstra.setObjectName(u"actionAlgoritmo_de_Dijkstra")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_6 = QGridLayout(self.centralwidget)
@@ -292,6 +294,7 @@ class Ui_MainWindow(object):
         self.menuAlgoritmos.addAction(self.anchura_profundidad)
         self.menuAlgoritmos.addAction(self.actionAlgoritmo_de_Prim)
         self.menuAlgoritmos.addAction(self.actionAlgoritmo_de_Kruskal)
+        self.menuAlgoritmos.addAction(self.actionAlgoritmo_de_Dijkstra)
 
         self.retranslateUi(MainWindow)
 
@@ -318,6 +321,7 @@ class Ui_MainWindow(object):
         self.anchura_profundidad.setText(QCoreApplication.translate("MainWindow", u"Recorrido en Anchura/Profundidad", None))
         self.actionAlgoritmo_de_Prim.setText(QCoreApplication.translate("MainWindow", u"Algoritmo de Prim", None))
         self.actionAlgoritmo_de_Kruskal.setText(QCoreApplication.translate("MainWindow", u"Algoritmo de Kruskal", None))
+        self.actionAlgoritmo_de_Dijkstra.setText(QCoreApplication.translate("MainWindow", u"Algoritmo de Dijkstra", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Actividad 6", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Distancia", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Origen en y:", None))

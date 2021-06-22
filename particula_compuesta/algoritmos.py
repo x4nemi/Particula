@@ -1,6 +1,9 @@
 import math
 from collections import deque
 from queue import PriorityQueue
+from pprint import pformat
+
+infinito = 1000000
 
 def distancia_euclidiana(x_1, y_1, x_2, y_2):
     en_x = math.pow(x_1 - x_2, 2)
@@ -204,7 +207,43 @@ def algoritmoKruskal(grafo):
                 grafoRes[destino] = [arista_d_o]
 
             makeSet(origen, destino, disjointSet)
-
- 
     
     return grafoRes
+
+def algoritmoDijkstra(grafo, origen):
+    distancias = dict()
+    
+    listaOrdenada = PriorityQueue()
+
+    for nodo in grafo: #key
+        if nodo == origen:
+            distancias[nodo] = 0
+            listaOrdenada.put((0, nodo))
+        else:
+            distancias[nodo] = infinito
+        #print(distancias)
+
+    camino = dict()
+
+    while not listaOrdenada.empty():
+        nodo = listaOrdenada.get() #(peso, (vertice))
+
+        ady_nodo = grafo.get(nodo[1]) #values
+
+        for arista in ady_nodo: 
+            destino = arista[1]
+            peso = arista[0]
+
+            dist = peso + nodo[0] 
+            #print(dist, distancias.get(destino), destino)
+
+            d2 = distancias.get(destino)
+
+            if dist < d2:
+                distancias[destino] = dist
+                camino[destino] = nodo[1]
+                listaOrdenada.put((dist, destino))
+                
+    return camino
+
+            
